@@ -5,6 +5,7 @@
   "main": "dist/editorjs.umd.js",
   "module": "dist/editorjs.mjs",
   "types": "./types/index.d.ts",
+  "type": "module",
   "keywords": [
     "codex editor",
     "text editor",
@@ -75,5 +76,11 @@
   "collective": {
     "type": "opencollective",
     "url": "https://opencollective.com/editorjs"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.3",
+    "react": "^18.2.0"
   }
 }

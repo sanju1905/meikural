@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Editor.js 🤩🧦🤨 example</title>
@@ -8,6 +9,7 @@
   <script src="/assets/json-preview.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
+
 <body>
   <script>
     if (localStorage.getItem('theme') === 'dark') {
@@ -30,6 +32,14 @@
       <div class="ce-example__button" id="saveButton">
         editor.save()
       </div>
+
+      <div class="ce-example__button" id="showDataButton">
+        ShowDataButton
+      </div>
+
+
+
+
       <div class="ce-example__statusbar">
         <div class="ce-example__statusbar-item">
           Readonly:
@@ -63,7 +73,7 @@
       <pre class="ce-example__output-content" id="output"></pre>
 
       <div class="ce-example__output-footer">
-        <a href="https://codex.so" style="font-weight: bold;">Made by CodeX</a>
+        <a href="https://codex.so" style="font-weight: bold;">Made by Meikural pvt lmt</a>
       </div>
     </div>
   </div>
@@ -78,6 +88,7 @@
     Read more at Tools Connection doc:
     https://editorjs.io/getting-started#tools-connection
   -->
+
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
@@ -168,12 +179,12 @@
         warning: Warning,
 
         marker: {
-          class:  Marker,
+          class: Marker,
           shortcut: 'CMD+SHIFT+M'
         },
 
         code: {
-          class:  CodeTool,
+          class: CodeTool,
           shortcut: 'CMD+SHIFT+C'
         },
 
@@ -207,8 +218,7 @@
        * Initial Editor data
        */
       data: {
-        blocks: [
-          {
+        blocks: [{
             id: "zcKCF1S7X8",
             type: "header",
             data: {
@@ -232,11 +242,10 @@
             }
           },
           {
-            type : 'list',
+            type: 'list',
             id: "SSBSguGvP7",
-            data : {
-              items : [
-                {
+            data: {
+              items: [{
                   content: 'It is a block-styled editor',
                   items: []
                 },
@@ -261,17 +270,17 @@
             }
           },
           {
-            type : 'paragraph',
+            type: 'paragraph',
             id: "bwnFX5LoX7",
-            data : {
-              text : 'Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.'
+            data: {
+              text: 'Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.'
             }
           },
           {
-            type : 'paragraph',
+            type: 'paragraph',
             id: "mTrPOHAQTe",
-            data : {
-              text : `There are dozens of <a href="https://github.com/editor-js">ready-to-use Blocks</a> and the <a href="https://editorjs.io/creating-a-block-tool">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.`
+            data: {
+              text: `There are dozens of <a href="https://github.com/editor-js">ready-to-use Blocks</a> and the <a href="https://editorjs.io/creating-a-block-tool">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.`
             }
           },
           {
@@ -283,36 +292,36 @@
             }
           },
           {
-            type : 'paragraph',
+            type: 'paragraph',
             id: "jpd7WEXrJG",
-            data : {
-              text : 'Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below'
+            data: {
+              text: 'Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below'
             }
           },
           {
-            type : 'paragraph',
+            type: 'paragraph',
             id: "0lOGNUKxqt",
-            data : {
-              text : `Given data can be used as you want: render with HTML for <code class="inline-code">Web clients</code>, render natively for <code class="inline-code">mobile apps</code>, create markup for <code class="inline-code">Facebook Instant Articles</code> or <code class="inline-code">Google AMP</code>, generate an <code class="inline-code">audio version</code> and so on.`
+            data: {
+              text: `Given data can be used as you want: render with HTML for <code class="inline-code">Web clients</code>, render natively for <code class="inline-code">mobile apps</code>, create markup for <code class="inline-code">Facebook Instant Articles</code> or <code class="inline-code">Google AMP</code>, generate an <code class="inline-code">audio version</code> and so on.`
             }
           },
           {
-            type : 'paragraph',
+            type: 'paragraph',
             id: "WvX7kBjp0I",
-            data : {
-              text : 'Clean data is useful to sanitize, validate and process on the backend.'
+            data: {
+              text: 'Clean data is useful to sanitize, validate and process on the backend.'
             }
           },
           {
-            type : 'delimiter',
+            type: 'delimiter',
             id: "H9LWKQ3NYd",
-            data : {}
+            data: {}
           },
           {
-            type : 'paragraph',
+            type: 'paragraph',
             id: "h298akk2Ad",
-            data : {
-              text : 'We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏'
+            data: {
+              text: 'We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏'
             }
           },
           {
@@ -328,7 +337,7 @@
           },
         ]
       },
-      onReady: function(){
+      onReady: function() {
         saveButton.click();
       },
       onChange: function(api, event) {
@@ -336,38 +345,375 @@
       },
     }
     /**
-    * To initialize the Editor, create a new instance with configuration object
-    * @see docs/installation.md for mode details
-    */
+     * To initialize the Editor, create a new instance with configuration object
+     * @see docs/installation.md for mode details
+     */
     var editor = new EditorJS(editorConfig);
 
     /**
-    * Saving button
-    */
+     * Saving button
+     */
     const saveButton = document.getElementById('saveButton');
 
+
     /**
-    * Toggle read-only button
-    */
+     * Toggle read-only button
+     */
     const toggleReadOnlyButton = document.getElementById('toggleReadOnlyButton');
     const readOnlyIndicator = document.getElementById('readonly-state');
 
     /**
-    * Saving example
-    */
-    saveButton.addEventListener('click', function () {
-      editor.save()
-        .then((savedData) => {
-          cPreview.show(savedData, document.getElementById("output"));
-        })
-        .catch((error) => {
-          console.error('Saving error', error);
-        });
+     * Saving example
+     */
+    // saveButton.addEventListener('click', function() {
+    //   editor.save()
+    //     .then((savedData) => {
+    //       cPreview.show(savedData, document.getElementById("output"));
+    //       console.log(JSON.stringify(savedData, null, 2));
+    //     })
+    //     .catch((error) => {
+    //       console.error('Saving error', error);
+    //     });
+    // });
+
+    saveButton.addEventListener('click', function() {
+  editor.save()
+    .then((savedData) => {
+      // Send the savedData to the backend
+      console.log("fetched data",savedData)
+      fetch('/saveDataEndpoint', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(savedData)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log('JSON data saved successfully');
+        // Handle successful response if needed
+      })
+      .catch(error => {
+        console.error('Error while sending data to server', error);
+      });
+    })
+    .catch((error) => {
+      console.error('Saving error', error);
+    });
+});
+
+
+
+    // Function to render content dynamically based on block type
+
+    // Function to render content dynamically based on block type
+    // Function to render content dynamically based on block type
+    const renderContent = (savedData) => {
+      const outputElement = document.getElementById("output");
+      outputElement.innerHTML = ""; // Clear output
+      savedData.blocks.forEach((block, index) => {
+        switch (block.type) {
+          case "header":
+            outputElement.innerHTML += `<h${block.data.level} style="font-size: ${20 - block.data.level * 2}px;">${block.data.text}</h${block.data.level}>`;
+            break;
+          case "paragraph":
+            outputElement.innerHTML += `<p style="font-style: italic;">${block.data.text}</p>`;
+            break;
+          case "table":
+            const tableData = block.data.content;
+            let tableHTML = "<table border='1'>";
+            if (block.data.withHeadings) {
+              tableHTML += "<tr>";
+              tableData[0].forEach(header => {
+                tableHTML += `<th>${header}</th>`;
+              });
+              tableHTML += "</tr>";
+              // Skip the first row containing headings
+              for (let i = 1; i < tableData.length; i++) {
+                tableHTML += "<tr>";
+                tableData[i].forEach(cell => {
+                  tableHTML += `<td>${cell}</td>`;
+                });
+                tableHTML += "</tr>";
+              }
+            } else {
+              tableData.forEach(row => {
+                tableHTML += "<tr>";
+                row.forEach(cell => {
+                  tableHTML += `<td>${cell}</td>`;
+                });
+                tableHTML += "</tr>";
+              });
+            }
+            tableHTML += "</table>";
+            outputElement.innerHTML += tableHTML;
+            break;
+
+
+
+          case "list":
+            outputElement.innerHTML += "<ul>";
+            block.data.items.forEach((item) => {
+              outputElement.innerHTML += `<li style="color: blue;">${item.content}</li>`;
+            });
+            outputElement.innerHTML += "</ul>";
+            break;
+          case "image":
+            outputElement.innerHTML += `<img src="${block.data.url}" alt="${block.data.caption}" style="max-width: 100%; border: 1px solid black;">`;
+            break;
+          case "delimiter":
+            outputElement.innerHTML += "<hr>";
+            break;
+          case "checklist":
+            outputElement.innerHTML += "<ul>";
+            block.data.items.forEach((item) => {
+              outputElement.innerHTML += `<li>${item.text}</li>`;
+            });
+            outputElement.innerHTML += "</ul>";
+            break;
+          case "code":
+            outputElement.innerHTML += `<code style="background-color: #f0f0f0; padding: 5px;">${block.data.code}</code>`;
+            break;
+          case "quote":
+            outputElement.innerHTML += `<blockquote style="border-left: 3px solid #ccc; padding-left: 10px;">${block.data.text}</blockquote>`;
+            break;
+          case "link":
+            outputElement.innerHTML += `<a href="${block.data.link}" style="color: green;">${block.data.text}</a>`;
+            break;
+          case "raw":
+            outputElement.innerHTML += `${block.data.html}`;
+            break;
+          case "quote":
+            outputElement.innerHTML += `<blockquote style="border-left: 3px solid #ccc; padding-left: 10px;">${block.data.text}</blockquote>`;
+            break;
+          case "warning":
+            outputElement.innerHTML += `<div style="color: white; border: 1px solid #ffb74d; padding: 10px; margin-bottom: 10px; ">${block.data.message}</div>`;
+            break;
+            // Handle other block types here...
+          default:
+            break;
+        }
+        // Insert a horizontal line after each block's content except for the last block
+        if (index < savedData.blocks.length - 1) {
+          outputElement.innerHTML += "<hr>";
+        }
+      });
+    };
+
+    // Event listener for "Show Saved Data" button
+    const showDataButton = document.getElementById('showDataButton');
+    showDataButton.addEventListener('click', async () => {
+      const savedData = await editor.save(); // Get saved data
+      renderContent(savedData); // Render saved data
     });
 
+
+
+
+    // Attach event listener to the "Show Saved Data" button
+
+
+
+    // json data display
+
+    //     saveButton.addEventListener('click', function () {
+    //   editor.save()
+    //     .then((savedData) => {
+    //       // Show the saved data in the output element
+    //       cPreview.show(savedData, document.getElementById("output")); 
+    //       // Log the saved data
+    //       console.log('Saved data:', savedData);
+
+    //       // Send the data to the server
+    //       fetch('/saveDataEndpoint', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ data: savedData }) 
+    //         // Ensure data is sent in the expected format
+
+    //       })
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         // Handle successful response if needed
+    //       })
+    //       .catch(error => {
+    //         console.error('Error while sending data to server', error);
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.error('Saving error', error);
+    //     });
+    // });
+
+
+
+
+    // saveButton.addEventListener('click', function () {
+    //   editor.save()
+    //     .then((savedData) => {
+    //       // Convert the savedData object to JSON string
+    //       var savedDataJSON = JSON.stringify(savedData, null, 2);
+
+    //       // Show the saved data in a new tab
+    //       var newTab = window.open();
+    //       newTab.document.body.innerHTML = "<pre>" + savedDataJSON + "</pre>";
+
+    //       // Send the data to the server
+    //       fetch('/saveDataEndpoint', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ data: savedData }) 
+    //       })
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         // Handle successful response if needed
+    //       })
+    //       .catch(error => {
+    //         console.error('Error while sending data to server', error);
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.error('Saving error', error);
+    //     });
+    // });
+
+
+
+
+    //only text display
+    // saveButton.addEventListener('click', function () {
+    //   editor.save()
+    //     .then((savedData) => {
+    //       // Extract text content from savedData object
+    //       var savedText = extractText(savedData);
+
+    //       // Show the saved data in a new tab
+    //       var newTab = window.open();
+    //       newTab.document.body.innerText = savedText;
+
+    //       // Send the data to the server
+    //       fetch('/saveDataEndpoint', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ data: savedText }) 
+    //       })
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         // Handle successful response if needed
+    //       })
+    //       .catch(error => {
+    //         console.error('Error while sending data to server', error);
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.error('Saving error', error);
+    //     });
+    // });
+
+    // function extractText(obj) {
+    //   // Initialize an empty string to store the text content
+    //   var text = "";
+
+    //   // Loop through the properties of the object
+    //   for (var key in obj) {
+    //     // Check if the property is a string
+    //     if (typeof obj[key] === 'string') {
+    //       // Concatenate the string to the text content
+    //       text += obj[key] + "\n";
+    //     } else if (typeof obj[key] === 'object') {
+    //       // If the property is an object, recursively call the function to extract text
+    //       text += extractText(obj[key]);
+    //     }
+    //   }
+
+    //   return text;
+    // }
+
+
+
+
+    //     saveButton.addEventListener('click', function () {
+    //   editor.save()
+    //     .then((savedData) => {
+    //       cPreview.show(savedData, document.getElementById("output"));
+    //       JSON.stringify(savedData, null, 2);
+
+
+    //       // Send the data to the server
+    //       fetch('/saveDataEndpoint', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ data: savedData }) // Sending JSON data to the server
+    //       })
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         // Handle successful response if needed
+    //       })
+    //       .catch(error => {
+    //         console.error('Error while sending data to server', error);
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.error('Saving error', error);
+    //     });
+    // });
+
+
+
+
+    // Other code...
+
+    // saveButton.addEventListener('click', function () {
+    //   editor.save()
+    //     .then((savedData) => {
+    //       // Send the savedData to the server
+    //       fetch('/saveDataEndpoint', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(savedData)
+    //       })
+    //       .then(response => {
+    //         if (!response.ok) {
+    //           throw new Error('Network response was not ok');
+    //         }
+    //         // Open a new tab to display the received data
+    //         window.open('/showData', '_blank');
+    //       })
+    //       .catch(error => {
+    //         console.error('Error while sending data to server', error);
+    //       });
+    //     })
+    //     .catch((error) => {
+    //       console.error('Saving error', error);
+    //     });
+    // });
+
+
+
+
     /**
-    * Toggle read-only example
-    */
+     * Toggle read-only example
+     */
     toggleReadOnlyButton.addEventListener('click', async () => {
       const readOnlyState = await editor.readOnly.toggle();
 
@@ -375,8 +721,8 @@
     });
 
     /**
-    * Button for displaying blocks borders. Useful for UI development
-    */
+     * Button for displaying blocks borders. Useful for UI development
+     */
     const showBlocksBoundariesButton = document.getElementById("showBlocksBoundariesButton");
 
     showBlocksBoundariesButton.addEventListener('click', () => {
@@ -384,8 +730,8 @@
     })
 
     /**
-    * Button for enabling the 'Thin' mode
-    */
+     * Button for enabling the 'Thin' mode
+     */
     const enableThinModeButton = document.getElementById("enableThinModeButton");
 
     enableThinModeButton.addEventListener('click', () => {
@@ -397,8 +743,8 @@
     })
 
     /**
-    * Toggler for toggling the dark mode
-    */
+     * Toggler for toggling the dark mode
+     */
     const darkThemeToggler = document.getElementById("darkThemeToggler");
 
     darkThemeToggler.addEventListener('click', () => {
@@ -410,4 +756,5 @@
     window.editor = editor;
   </script>
 </body>
+
 </html>
