@@ -4,10 +4,12 @@ import express from 'express';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import license from 'rollup-plugin-license';
 import * as pkg from './package.json';
-// const bodyParser = require('body-parser');
+
 const NODE_ENV = process.argv.mode || 'development';
 const VERSION = pkg.version;
 const app = express();
+
+// Connect to MongoDB
 mongoose.connect('mongodb+srv://sanjay:sanjay@cluster0.fjcbkym.mongodb.net/test?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -22,55 +24,31 @@ const jsonDataSchema = new mongoose.Schema({
 
 // Create a model
 const JsonData = mongoose.model('JsonData', jsonDataSchema);
+
+// Middleware to parse JSON request body
 app.use(express.json());
+
+// POST endpoint to save JSON data to MongoDB
 app.post('/saveDataEndpoint', (req, res) => {
-  const jsonData = req.body;
+  const jsonData = req.body.data;
+  console.log('Received JSON data:', req.body);
 
-  // Save JSON data to MongoDB
-  JsonData.create(jsonData)
-    .then(() => {
-      console.log('JSON data saved to MongoDB:', jsonData);
-      res.status(200).send('JSON data saved successfully');
-    })
-    .catch(error => {
-      console.error('Error saving JSON data:', error);
-      res.status(500).send('Error saving JSON data');
-    });
+  JsonData.create({ data: jsonData })
+  .then(() => {
+    console.log('JSON data saved to MongoDB:', jsonData);
+    res.status(200).send('JSON data saved successfully');
+  })
+  .catch(error => {
+    console.error('Error saving JSON data:', error);
+    res.status(500).send('Error saving JSON data');
+  });
 });
-
-
-app.use(express.static(path.resolve(__dirname, 'dist')));
-
-
-
-// app.use(bodyParser.json());
-// // Create an Express application
-// let savedData = null; // Variable to store the saved data
-
-
-// // Define a POST endpoint to handle data
-// app.post('/saveDataEndpoint', (req, res) => {
-//   // Assuming the JSON data is sent as the request body
-//   savedData = req.body.data;
-
-//   // Log the received data
-//   console.log('Received data:', savedData);
-
-//   // Send a response to acknowledge the successful operation
-//   res.status(200).send('Data received successfully');
-// });
-
-
-
-
-
-
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
 // Start the Express server
-const port = 3303;
+const port = 5173;
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
@@ -89,18 +67,15 @@ export default {
           thirdParty: {
             allow: {
               test: (dependency) => {
-                // Manually allow html-janitor (https://github.com/guardian/html-janitor/blob/master/LICENSE)
-                // because of missing LICENSE file in published package
+                // Manually allow html-janitor because of missing LICENSE file
                 if (dependency.name === 'html-janitor') {
                   return true;
                 }
-
-                // Return false for unlicensed dependencies.
+                // Return false for unlicensed dependencies
                 if (!dependency.license) {
                   return false;
                 }
-
-                // Allow MIT and Apache-2.0 licenses.
+                // Allow MIT and Apache-2.0 licenses
                 return ['MIT', 'Apache-2.0'].includes(dependency.license);
               },
               failOnUnlicensed: true,
@@ -112,29 +87,19 @@ export default {
       ],
     },
   },
-
   define: {
     'NODE_ENV': JSON.stringify(NODE_ENV),
     'VERSION': JSON.stringify(VERSION),
   },
-
-  // server: {
-  //   port: 3303,
-  //   open: true,
-  // },
-
-
-    server: {
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3303',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
-        },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5173',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
- 
-
+  },
   plugins: [
     cssInjectedByJsPlugin(),
   ],

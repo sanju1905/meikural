@@ -365,28 +365,30 @@
     /**
      * Saving example
      */
-    // saveButton.addEventListener('click', function() {
-    //   editor.save()
-    //     .then((savedData) => {
-    //       cPreview.show(savedData, document.getElementById("output"));
-    //       console.log(JSON.stringify(savedData, null, 2));
-    //     })
-    //     .catch((error) => {
-    //       console.error('Saving error', error);
-    //     });
-    // });
+    saveButton.addEventListener('click', function() {
+      editor.save()
+        .then((savedData) => {
+          cPreview.show(savedData, document.getElementById("output"));
+          console.log(JSON.stringify(savedData, null, 2));
+        })
+        .catch((error) => {
+          console.error('Saving error', error);
+        });
+    });
 
     saveButton.addEventListener('click', function() {
   editor.save()
     .then((savedData) => {
       // Send the savedData to the backend
       console.log("fetched data",savedData)
+      jsonData.save(savedData)
       fetch('/saveDataEndpoint', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(savedData)
+        
       })
       .then(response => {
         if (!response.ok) {
@@ -401,7 +403,7 @@
     })
     .catch((error) => {
       console.error('Saving error', error);
-    });
+    });  
 });
 
 
