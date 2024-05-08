@@ -1,3 +1,4 @@
+import cors from 'cors';
 import path from 'path';
 import mongoose from 'mongoose';
 import express from 'express';
@@ -8,7 +9,7 @@ import * as pkg from './package.json';
 const NODE_ENV = process.argv.mode || 'development';
 const VERSION = pkg.version;
 const app = express();
-
+app.use(cors());
 // Connect to MongoDB
 mongoose.connect('mongodb+srv://sanjay:sanjay@cluster0.fjcbkym.mongodb.net/test?retryWrites=true&w=majority', {
   useNewUrlParser: true,
@@ -17,32 +18,50 @@ mongoose.connect('mongodb+srv://sanjay:sanjay@cluster0.fjcbkym.mongodb.net/test?
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Connection error:', err));
 
+
+
+
 // Define Mongoose schema
 const jsonDataSchema = new mongoose.Schema({
-  data: Object // Assuming your JSON data structure is stored as an object
+  time: Number,
+  data: String, // Store the entire data as a string
+  version: String
 });
-
+ 
 // Create a model
 const JsonData = mongoose.model('JsonData', jsonDataSchema);
 
 // Middleware to parse JSON request body
 app.use(express.json());
-
-// POST endpoint to save JSON data to MongoDB
-app.post('/saveDataEndpoint', (req, res) => {
-  const jsonData = req.body.data;
-  console.log('Received JSON data:', req.body);
-
-  JsonData.create({ data: jsonData })
-  .then(() => {
-    console.log('JSON data saved to MongoDB:', jsonData);
-    res.status(200).send('JSON data saved successfully');
-  })
-  .catch(error => {
-    console.error('Error saving JSON data:', error);
-    res.status(500).send('Error saving JSON data');
-  });
+// Endpoint to save data
+app.post('/savedata', async (req, res) => {
+  try {
+    const { data } = req.body; // Assuming the frontend sends the data in a property named 'data'
+    const newData = new JsonData({ data });
+    console.log(newData);
+    const savedData = await newData.save();
+    res.json(savedData);
+  } catch (error) {
+    res.status(500).json({ error: 'Saving error', details: error.message });
+  }
 });
+
+
+// Endpoint to get all data
+app.get('/api/getdata', async (req, res) => {
+  try {
+    const allData = await JsonData.find({});
+    res.json(allData);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).json({ error: 'Error fetching data', details: error.message });
+  }
+});
+
+
+
+
+
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.resolve(__dirname, 'dist')));
@@ -52,6 +71,8 @@ const port = 5173;
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`);
 });
+import { defineConfig } from 'vite';
+
 
 export default {
   build: {
@@ -91,6 +112,7 @@ export default {
     'NODE_ENV': JSON.stringify(NODE_ENV),
     'VERSION': JSON.stringify(VERSION),
   },
+ 
   server: {
     proxy: {
       '/api': {

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Editor.js 🤩🧦🤨 example</title>
+  <title>Editor.js</title>
   <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
   <link href="/assets/demo.css" rel="stylesheet">
   <script src="/assets/json-preview.js"></script>
@@ -365,37 +365,121 @@
     /**
      * Saving example
      */
-    saveButton.addEventListener('click', function() {
-      editor.save()
-        .then((savedData) => {
-          cPreview.show(savedData, document.getElementById("output"));
-          console.log(JSON.stringify(savedData, null, 2));
-        })
-        .catch((error) => {
-          console.error('Saving error', error);
-        });
-    });
+    // saveButton.addEventListener('click', function() {
+    //   editor.save()
+    //     .then((savedData) => {
+    //       cPreview.show(savedData, document.getElementById("output"));
+    //       console.log(JSON.stringify(savedData, null, 2));
+    //     })
+    //     .catch((error) => {
+    //       console.error('Saving error', error);
+    //     });
+    // });
 
-    saveButton.addEventListener('click', function() {
+    
+//    // Frontend code
+// saveButton.addEventListener('click', function() {
+//   editor.save()
+//     .then((savedData) => {
+//       // Ensure savedData is populated
+//       console.log("fetched data", savedData);
+
+//       // Send savedData as the body of the POST request
+//       fetch('/saveDataEndpoint', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ data: savedData })
+//       })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error('Network response was not ok');
+//         }
+//         console.log('JSON data saved successfully');
+//         // Handle successful response if needed
+//       })
+//       .catch(error => {
+//         console.error('Error while sending data to server', error);
+//       });
+//     })
+//     .catch((error) => {
+//       console.error('Saving error', error);
+//     });  
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// saveButton.addEventListener('click', function() {
+//   editor.save()
+//     .then((savedData) => {
+//       // POST request to save data
+//       console.log("Fetch data",savedData)
+//       fetch('http://localhost:5173/savedata', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(savedData)
+//       })
+//       .then(response => response.json())
+//       .then(savedData => {
+//         console.log('Data saved:', savedData);
+//       })
+//       .catch(error => {
+//         console.error('Saving error:', error);
+//       });
+
+//       cPreview.show(savedData, document.getElementById("output"));
+//       console.log(JSON.stringify(savedData, null, 2));
+//     })
+//     .catch((error) => {
+//       console.error('Saving error', error);
+//     });
+// });
+
+// // GET request to fetch all data
+// fetch('http://localhost:5173/getdata')
+//   .then(response => response.json())
+//   .then(allData => {
+//     console.log('All data:', allData);
+//     // Process fetched data as needed
+//   })
+//   .catch(error => {
+//     console.error('Error fetching data:', error);
+//   });
+
+// Frontend code
+saveButton.addEventListener('click', function () {
   editor.save()
     .then((savedData) => {
-      // Send the savedData to the backend
-      console.log("fetched data",savedData)
-      jsonData.save(savedData)
-      fetch('/saveDataEndpoint', {
+      const jsonData = JSON.stringify(savedData, null, 2);
+      console.log("Jsondatara",jsonData)
+      // Send the data to the server
+      fetch('/savedata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(savedData)
+        body: JSON.stringify({ data: jsonData }) // Sending JSON data as text
         
       })
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        console.log('JSON data saved successfully');
-        // Handle successful response if needed
+        console.log('Data saved successfully');
       })
       .catch(error => {
         console.error('Error while sending data to server', error);
@@ -403,8 +487,33 @@
     })
     .catch((error) => {
       console.error('Saving error', error);
-    });  
+    });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -756,6 +865,12 @@
     })
 
     window.editor = editor;
+
+
+
+
+    
+
   </script>
 </body>
 
