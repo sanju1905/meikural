@@ -18,27 +18,22 @@ mongoose.connect('mongodb+srv://sanjay:sanjay@cluster0.fjcbkym.mongodb.net/test?
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Connection error:', err));
 
+// Define a generic schema
+const GenericSchema = new mongoose.Schema({}, { strict: false });
 
+// Create a model dynamically
+const GenericModel = mongoose.model('GenericModel', GenericSchema);
 
+export { GenericModel };
 
-// Define Mongoose schema
-const jsonDataSchema = new mongoose.Schema({
-  time: Number,
-  data: String, // Store the entire data as a string
-  version: String
-});
- 
-// Create a model
-const JsonData = mongoose.model('JsonData', jsonDataSchema);
 
 // Middleware to parse JSON request body
 app.use(express.json());
 // Endpoint to save data
 app.post('/savedata', async (req, res) => {
   try {
-    const { data } = req.body; // Assuming the frontend sends the data in a property named 'data'
-    const newData = new JsonData({ data });
-    console.log(newData);
+    const { data } = req.body;
+    const newData = new GenericModel({ data });
     const savedData = await newData.save();
     res.json(savedData);
   } catch (error) {
@@ -46,11 +41,10 @@ app.post('/savedata', async (req, res) => {
   }
 });
 
-
 // Endpoint to get all data
 app.get('/api/getdata', async (req, res) => {
   try {
-    const allData = await JsonData.find({});
+    const allData = await GenericModel.find({});
     res.json(allData);
   } catch (error) {
     console.error('Error fetching data:', error);

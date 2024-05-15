@@ -5,7 +5,7 @@
   "main": "dist/editorjs.umd.js",
   "module": "dist/editorjs.mjs",
   "types": "./types/index.d.ts",
-  "type": "module",
+  "type": "module", 
   "keywords": [
     "codex editor",
     "text editor",
